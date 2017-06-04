@@ -1,0 +1,55 @@
+buildscript {
+    ext.kotlin_version = '1.1.2'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'kotlin2js'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main.kotlin.srcDirs += "src/main/kotlin"
+    main.kotlin.srcDirs += "src/test/kotlin"
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+}
+
+build.doLast {
+    configurations.compile.each { File file ->
+        copy {
+            includeEmptyDirs = false
+
+            from zipTree(file.absolutePath)
+            into "${buildDir}/web"
+            include { fileTreeElement ->
+                def path = fileTreeElement.path
+                path.endsWith(".js") && (path.startsWith("META-INF/resources/") || !path.startsWith("META-INF/"))
+            }
+        }
+    }
+
+    copy {
+        includeEmptyDirs = false
+        
+        from file("src/main/js/")
+        into "${buildDir}/web"
+        include { fileTreeElement ->
+            def path = fileTreeElement.path
+            path.endsWith(".js")
+        }
+    }
+}
+
+compileKotlin2Js.kotlinOptions {
+    moduleKind = "commonjs"
+    outputFile = "${buildDir}/web/output.js"
+}

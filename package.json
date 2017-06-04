@@ -1,0 +1,21 @@
+{
+  "name": "such-dank",
+  "version": "0.0.1",
+  "description": "A memebot for slack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "slack",
+    "memes"
+  ],
+  "author": "Nish Tahir",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "botkit": "^0.5.4",
+    "config": "^1.26.1",
+    "kotlin": "^1.1.0",
+    "log": "^1.4.0"
+  }
+}
