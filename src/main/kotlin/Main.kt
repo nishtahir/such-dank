@@ -41,15 +41,16 @@ fun main(args: Array<String>) {
 
         on("slash_command") { bot, message ->
             when(message.command) {
-                "/test" -> println("test slash command detected")
+                "/dank" -> {
+                    var text: String = message.text
+                    bot.replyPublic(message, "https://memegen.link/${text.replace(" ", "_").replace(";", "/")}.jpg")
+                }
+                else -> {
+
+                }
             }
-            bot.replyPublic(message, "slash command is working")
         }
     }
-}
-
-fun processSlashCommand(message: dynamic) {
-
 }
 
 fun json(build: JsonBuilder.() -> Unit): Json {

@@ -30,3 +30,4 @@ gradle-app.setting
 .gradletasknamecache
 
 db_slackbutton_bot/
+config/
