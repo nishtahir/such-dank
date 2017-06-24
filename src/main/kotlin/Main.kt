@@ -1,12 +1,12 @@
 import kotlin.js.*
 
-external val process: dynamic
-
 @JsModule("botkit")
 external val botkit: dynamic = definedExternally
 
 @JsModule("config")
 external val config: dynamic = definedExternally
+
+external val process: dynamic = definedExternally
 
 fun main(args: Array<String>) {
 
