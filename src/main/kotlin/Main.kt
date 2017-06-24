@@ -1,19 +1,20 @@
 import kotlin.js.*
 
-external fun require(module: String): dynamic
 external val process: dynamic
 
-val botkit = require("botkit")
-val config = require("config")
-val log = require("config")
+@JsModule("botkit")
+external val botkit: dynamic = definedExternally
+
+@JsModule("config")
+external val config: dynamic = definedExternally
 
 fun main(args: Array<String>) {
 
-    val clientId = config.get("bot.client-id");
-    val clientSecret = config.get("bot.client-secret");
-    val botUserToken = config.get("bot.bot-user-token");
+    val clientId = config.get("bot.client-id")
+    val clientSecret = config.get("bot.client-secret")
+    val botUserToken = config.get("bot.bot-user-token")
     val datastore = config.get("data.datastore")
-    val port = config.get("server.port");
+    val port = config.get("server.port")
 
     var controller = botkit.slackbot(json { 
         "debug" to true
