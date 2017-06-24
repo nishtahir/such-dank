@@ -4,7 +4,8 @@
   "description": "A memebot for slack",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gradle": "./gradlew build",
+    "start": "./gradlew build && node build/web/output.js"
   },
   "keywords": [
     "slack",
